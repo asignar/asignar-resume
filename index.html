@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quinn Adrian Asignar | Digital Content Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        :root {
+            --bg: #0b0f1a;
+            --card-bg: #161b2c;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --nav-bg: rgba(11, 15, 26, 0.9);
+        }
+
+        /* Reset & Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+        }
+        nav ul li a:hover { color: var(--accent); }
+
+        /* General Layout */
+        section {
+            min-height: 100vh;
+            padding: 120px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: auto;
+        }
+
+        /* Hero Section */
+        .hero-flex {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            text-align: left;
+        }
+        .profile-img {
+            width: 350px;
+            height: 350px;
+            border-radius: 30px;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 20px 50px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Typography */
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+        h2 { font-size: 2.5rem; margin-bottom: 3rem; font-weight: 700; text-align: center; }
+        h3 { margin-bottom: 1rem; color: var(--accent); }
+        p { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 1rem; }
+        .highlight { color: var(--accent); }
+
+        /* Experience Blocks */
+        .experience-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .exp-block {
+            background: linear-gradient(145deg, #1e293b, #161b2c);
+            padding: 3rem;
+            border-radius: 24px;
+            border-left: 5px solid var(--accent);
+            transition: 0.3s ease;
+        }
+        .exp-block:hover {
+            transform: scale(1.01);
+            background: linear-gradient(145deg, #23304a, #161b2c);
+        }
+        .exp-block h4 {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .exp-block .date {
+            display: block;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .exp-block ul { list-style: none; padding-left: 0; }
+        .exp-block ul li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dim);
+            font-size: 1.05rem;
+        }
+        .exp-block ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Grid/Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.4s ease;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent); }
+
+        /* Project Card Styles */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 1.8rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.3s;
+            min-height: 250px;
+        }
+        .project-card:hover {
+            border-color: var(--accent);
+            background: #1c2237;
+            transform: translateY(-5px);
+        }
+        .project-cms {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.8rem;
+        }
+        .project-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+        }
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .project-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+            margin-top: auto;
+            text-transform: uppercase;
+        }
+        .project-link:hover { color: var(--accent); }
+
+        /* CMS Slider */
+        .cms-slider {
+            margin-top: 4rem;
+            overflow: hidden;
+            position: relative;
+            padding: 2rem 0;
+        }
+        .logo-track {
+            display: flex;
+            width: calc(320px * 14);
+            animation: scroll 25s linear infinite;
+        }
+        .logo-item {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .logo-item img { height: 60px; width: auto; filter: grayscale(1) brightness(1.5); transition: 0.3s; }
+        .logo-item:hover img { filter: grayscale(0) brightness(1); }
+        .logo-item span { font-weight: 800; color: var(--text-dim); font-size: 0.8rem; }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-320px * 7)); }
+        }
+
+        /* Contact Styles */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .contact-item h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: var(--text-dim);
+        }
+        .contact-link {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .contact-link:hover { color: var(--accent); }
+
+        .cta-container {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(145deg, #161b2c, #0b0f1a);
+            border-radius: 30px;
+            border: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .btn-main {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: var(--accent);
+            color: var(--bg);
+            text-decoration: none;
+            font-weight: 800;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(56, 189, 248, 0.4);
+            filter: brightness(1.1);
+        }
+
+        footer { text-align: center; padding: 4rem 0; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        @media (max-width: 900px) {
+            .hero-flex { flex-direction: column; text-align: center; }
+            .profile-img { width: 280px; height: 280px; }
+            .exp-block { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Introduction</a></li>
+            <li><a href="#about">About me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="container">
+            <div class="hero-flex">
+                <img src="resumepic.jpg" alt="Profile" class="profile-img hero-reveal">
+                <div class="hero-reveal">
+                    <p class="highlight">Available for Freelance Projects</p>
+                    <h1>Digital Content <br><span class="highlight">Specialist.</span></h1>
+                    <p>Focused on aligning website design with seamless project operations. I leverage tracking systems to ensure brand consistency and zero-bottleneck delivery, while proactively adopting new technologies and workflows to optimize organizational performance.</p>
+                    <a href="#contact" class="btn-main">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="reveal">About Me</h2>
+            <div class="experience-container">
+                <div class="exp-block reveal">
+                    <span class="date">Current Role</span>
+                    <h4>Digital Content Manager</h4>
+                    <ul>
+                        <li>Orchestrate end-to-end web content strategy across WordPress, Drupal, and Adobe Experience Manager (AEM).</li>
+                        <li>Act as the primary technical liaison for US-based clients, translating complex requirements into digital experiences.</li>
+                        <li>Optimize site architecture and content workflows to ensure seamless user journeys.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="reveal" style="text-align: center; margin-bottom: 2rem;">Core Skills</h3>
+            <div class="grid">
+                <div class="card reveal-card">
+                    <h3>Project Management</h3>
+                    <p>Expert at navigating complex localization workflows and website deployments.</p>
+                </div>
+                <div class="card reveal-card">
+                    <h3>Website Maintenance</h3>
+                    <p>Orchestrate daily operations across multiple CMS platforms including troubleshooting.</p>
+                </div>
+                <div class="card reveal-card">
+                    <h3>Client Success</h3>
+                    <p>Primary contact for user inquiries, translating feedback into improvements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" style="min-height: auto; background: #0e1321;">
+        <div class="container">
+            <h2 class="reveal">CMS Platforms Handled</h2>
+            <div class="cms-slider reveal">
+                <div class="logo-track">
+                    <div class="logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/drupal/drupal-original.svg" alt="Drupal"><span>DRUPAL</span></div>
+                    <div class="logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="Wordpress"><span>WORDPRESS</span></div>
+                    <div class="logo-item"><img src="https://img.icons8.com/ios-filled/100/38bdf8/alpha-a.png" alt="Apostrophe"><span>APOSTROPHE</span></div>
+                    <div class="logo-item"><img src="https://img.icons8.com/color/144/adobe-experience-manager.png" alt="AEM"><span>AEM</span></div>
+                    <div class="logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/magento/magento-original.svg" alt="Magento"><span>MAGENTO</span></div>
+                    <div class="logo-item"><img src="https://img.icons8.com/ios/100/38bdf8/database--v1.png" alt="PIM"><span>PIM / DAM</span></div>
+                    <div class="logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/drupal/drupal-original.svg" alt="Drupal"><span>DRUPAL</span></div>
+                    <div class="logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" alt="Wordpress"><span>WORDPRESS</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="reveal">Project Portfolio</h2>
+            <div class="grid">
+                
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">WordPress</span>
+                        <h4 class="project-name">Roger The Roofer</h4>
+                        <p class="project-desc">Executed a full site migration ensuring data integrity and SEO preservation during the transition.</p>
+                    </div>
+                    <a href="https://rogertheroofer.com" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">Ibexa (Headless)</span>
+                        <h4 class="project-name">Aderma</h4>
+                        <p class="project-desc">Managed headless CMS architecture and complex localization for the French digital market.</p>
+                    </div>
+                    <a href="https://www.aderma.fr/fr-fr" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">Ibexa (Headless)</span>
+                        <h4 class="project-name">Eau Thermale Avène</h4>
+                        <p class="project-desc">Deployed localized content strategies within a headless environment for high-end skincare branding.</p>
+                    </div>
+                    <a href="https://www.eau-thermale-avene.fr" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">Drupal</span>
+                        <h4 class="project-name">Arval</h4>
+                        <p class="project-desc">Coordinated multi-region localization efforts to align global site content with local audience needs.</p>
+                    </div>
+                    <a href="https://www.arval.com" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">HTML / CSS / JS</span>
+                        <h4 class="project-name">HP Acebedo Optical</h4>
+                        <p class="project-desc">Custom frontend development focused on responsive design and brand-specific user experiences.</p>
+                    </div>
+                    <a href="https://hpacebedooptical.com" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">Drupal</span>
+                        <h4 class="project-name">TotalEnergies</h4>
+                        <p class="project-desc">Led technical migration and global localization to support international energy sector digital operations.</p>
+                    </div>
+                    <a href="https://totalenergies.com" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">Adobe (AEM)</span>
+                        <h4 class="project-name">Maserati</h4>
+                        <p class="project-desc">Specialized in news and article content creation within the AEM ecosystem for a premium luxury audience.</p>
+                    </div>
+                    <a href="https://www.maserati.com/us/en" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">Drupal</span>
+                        <h4 class="project-name">Baxter</h4>
+                        <p class="project-desc">Provided expert webmastering services, maintaining site health and frequent content updates.</p>
+                    </div>
+                    <a href="https://www.baxter.com/" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">Drupal</span>
+                        <h4 class="project-name">Vantive</h4>
+                        <p class="project-desc">Managed end-to-end webmastering and regional content alignment for the Asia-Pacific market.</p>
+                    </div>
+                    <a href="https://www.vantive.asia/" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+                <div class="project-card reveal-card">
+                    <div>
+                        <span class="project-cms">WordPress</span>
+                        <h4 class="project-name">Grow Financial</h4>
+                        <p class="project-desc">Strategic webmastering and maintenance for a financial services platform, focusing on security and updates.</p>
+                    </div>
+                    <a href="https://www.growfinancial.org/" class="project-link" target="_blank">Visit Site ↗</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="reveal">Let's Connect</h2>
+            
+            <div class="contact-grid reveal">
+                <div class="contact-item">
+                    <h3>Direct Line</h3>
+                    <a href="tel:+639360648682" class="contact-link">(+639) 360 648 682</a>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:asignara255@gmail.com" class="contact-link">asignara255@gmail.com</a>
+                    <p style="margin: 0.5rem 0;">or</p>
+                    <a href="mailto:asignara255@outlook.com" class="contact-link">asignara255@outlook.com</a>
+                </div>
+            </div>
+
+            <div class="cta-container reveal">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem;">Review my Experience</h3>
+                <p style="margin-bottom: 2rem;">Interested in a detailed breakdown of my projects and certifications?</p>
+                <a href="Quinn-Adrian-Asignar_CV_2026.pdf" target="_blank" class="btn-main">View Full Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Website Developed by Quinn Adrian Asignar</p>
+    </footer>
+
+    <script>
+        const sr = ScrollReveal({ origin: 'bottom', distance: '50px', duration: 1000, delay: 200, reset: true });
+        sr.reveal('.hero-reveal', { delay: 300, interval: 200 });
+        sr.reveal('.reveal', { interval: 150 });
+        sr.reveal('.reveal-card', { interval: 150 });
+    </script>
+</body>
+</html>
