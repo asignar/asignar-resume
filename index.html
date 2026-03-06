@@ -13,7 +13,7 @@
             --accent: #38bdf8;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
-            --nav-bg: rgba(11, 15, 26, 0.9);
+            --nav-bg: rgba(11, 15, 26, 0.95);
         }
 
         /* Reset & Base Styles */
@@ -34,16 +34,33 @@
             width: 100%;
             background: var(--nav-bg);
             backdrop-filter: blur(12px);
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
         nav ul {
             display: flex;
-            justify-content: center;
             list-style: none;
             gap: 2.5rem;
         }
+
         nav ul li a {
             text-decoration: none;
             color: var(--text-dim);
@@ -53,7 +70,25 @@
             letter-spacing: 1.5px;
             transition: 0.3s;
         }
+
         nav ul li a:hover { color: var(--accent); }
+
+        /* Hamburger Styles */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-main);
+            transition: 0.3s;
+            border-radius: 2px;
+        }
 
         /* General Layout */
         section {
@@ -184,18 +219,8 @@
             letter-spacing: 1.5px;
             margin-bottom: 0.8rem;
         }
-        .project-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: var(--text-main);
-        }
-        .project-desc {
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
+        .project-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--text-main); }
+        .project-desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 1.5rem; line-height: 1.5; }
         .project-link {
             color: var(--text-main);
             text-decoration: none;
@@ -259,6 +284,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
+            word-break: break-all;
         }
         .contact-link:hover { color: var(--accent); }
 
@@ -294,22 +320,56 @@
 
         footer { text-align: center; padding: 4rem 0; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); }
 
+        /* Responsive Mobile Layout */
         @media (max-width: 900px) {
+            .menu-toggle { display: flex; }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                flex-direction: column;
+                background: var(--bg);
+                width: 100%;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+                transition: 0.4s ease-in-out;
+                gap: 2.5rem;
+                padding: 0;
+            }
+
+            .nav-menu.active { left: 0; }
+
+            .menu-toggle.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
             .hero-flex { flex-direction: column; text-align: center; }
             .profile-img { width: 280px; height: 280px; }
             .exp-block { padding: 2rem; }
+            h1 { font-size: 2.5rem; }
+            .contact-link { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <ul>
-            <li><a href="#home">Introduction</a></li>
-            <li><a href="#about">About me</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="#" class="logo-text">QUINN ASIGNAR</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Introduction</a></li>
+                <li><a href="#about">About me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
     <section id="home">
@@ -381,97 +441,54 @@
         <div class="container">
             <h2 class="reveal">Project Portfolio</h2>
             <div class="grid">
-                
                 <div class="project-card reveal-card">
                     <div>
                         <span class="project-cms">WordPress</span>
                         <h4 class="project-name">Roger The Roofer</h4>
-                        <p class="project-desc">Executed a full site migration ensuring data integrity and SEO preservation during the transition.</p>
+                        <p class="project-desc">Executed a full site migration ensuring data integrity and SEO preservation.</p>
                     </div>
                     <a href="https://rogertheroofer.com" class="project-link" target="_blank">Visit Site ↗</a>
                 </div>
-
                 <div class="project-card reveal-card">
                     <div>
                         <span class="project-cms">Ibexa (Headless)</span>
                         <h4 class="project-name">Aderma</h4>
-                        <p class="project-desc">Managed headless CMS architecture and complex localization for the French digital market.</p>
+                        <p class="project-desc">Managed headless CMS architecture and complex localization for the French market.</p>
                     </div>
                     <a href="https://www.aderma.fr/fr-fr" class="project-link" target="_blank">Visit Site ↗</a>
                 </div>
-
                 <div class="project-card reveal-card">
                     <div>
                         <span class="project-cms">Ibexa (Headless)</span>
                         <h4 class="project-name">Eau Thermale Avène</h4>
-                        <p class="project-desc">Deployed localized content strategies within a headless environment for high-end skincare branding.</p>
+                        <p class="project-desc">Deployed localized content strategies within a headless environment for luxury branding.</p>
                     </div>
                     <a href="https://www.eau-thermale-avene.fr" class="project-link" target="_blank">Visit Site ↗</a>
                 </div>
-
                 <div class="project-card reveal-card">
                     <div>
                         <span class="project-cms">Drupal</span>
                         <h4 class="project-name">Arval</h4>
-                        <p class="project-desc">Coordinated multi-region localization efforts to align global site content with local audience needs.</p>
+                        <p class="project-desc">Coordinated multi-region localization efforts for global digital alignment.</p>
                     </div>
                     <a href="https://www.arval.com" class="project-link" target="_blank">Visit Site ↗</a>
                 </div>
-
                 <div class="project-card reveal-card">
                     <div>
                         <span class="project-cms">HTML / CSS / JS</span>
                         <h4 class="project-name">HP Acebedo Optical</h4>
-                        <p class="project-desc">Custom frontend development focused on responsive design and brand-specific user experiences.</p>
+                        <p class="project-desc">Custom frontend development focused on responsive design and brand experience.</p>
                     </div>
                     <a href="https://hpacebedooptical.com" class="project-link" target="_blank">Visit Site ↗</a>
                 </div>
-
                 <div class="project-card reveal-card">
                     <div>
                         <span class="project-cms">Drupal</span>
                         <h4 class="project-name">TotalEnergies</h4>
-                        <p class="project-desc">Led technical migration and global localization to support international energy sector digital operations.</p>
+                        <p class="project-desc">Led technical migration and global localization to support international energy operations.</p>
                     </div>
                     <a href="https://totalenergies.com" class="project-link" target="_blank">Visit Site ↗</a>
                 </div>
-
-                <div class="project-card reveal-card">
-                    <div>
-                        <span class="project-cms">Adobe (AEM)</span>
-                        <h4 class="project-name">Maserati</h4>
-                        <p class="project-desc">Specialized in news and article content creation within the AEM ecosystem for a premium luxury audience.</p>
-                    </div>
-                    <a href="https://www.maserati.com/us/en" class="project-link" target="_blank">Visit Site ↗</a>
-                </div>
-
-                <div class="project-card reveal-card">
-                    <div>
-                        <span class="project-cms">Drupal</span>
-                        <h4 class="project-name">Baxter</h4>
-                        <p class="project-desc">Provided expert webmastering services, maintaining site health and frequent content updates.</p>
-                    </div>
-                    <a href="https://www.baxter.com/" class="project-link" target="_blank">Visit Site ↗</a>
-                </div>
-
-                <div class="project-card reveal-card">
-                    <div>
-                        <span class="project-cms">Drupal</span>
-                        <h4 class="project-name">Vantive</h4>
-                        <p class="project-desc">Managed end-to-end webmastering and regional content alignment for the Asia-Pacific market.</p>
-                    </div>
-                    <a href="https://www.vantive.asia/" class="project-link" target="_blank">Visit Site ↗</a>
-                </div>
-
-                <div class="project-card reveal-card">
-                    <div>
-                        <span class="project-cms">WordPress</span>
-                        <h4 class="project-name">Grow Financial</h4>
-                        <p class="project-desc">Strategic webmastering and maintenance for a financial services platform, focusing on security and updates.</p>
-                    </div>
-                    <a href="https://www.growfinancial.org/" class="project-link" target="_blank">Visit Site ↗</a>
-                </div>
-
             </div>
         </div>
     </section>
@@ -479,21 +496,16 @@
     <section id="contact">
         <div class="container">
             <h2 class="reveal">Let's Connect</h2>
-            
             <div class="contact-grid reveal">
                 <div class="contact-item">
                     <h3>Direct Line</h3>
                     <a href="tel:+639360648682" class="contact-link">(+639) 360 648 682</a>
                 </div>
-
                 <div class="contact-item">
                     <h3>Email</h3>
                     <a href="mailto:asignara255@gmail.com" class="contact-link">asignara255@gmail.com</a>
-                    <p style="margin: 0.5rem 0;">or</p>
-                    <a href="mailto:asignara255@outlook.com" class="contact-link">asignara255@outlook.com</a>
                 </div>
             </div>
-
             <div class="cta-container reveal">
                 <h3 style="color: var(--text-main); margin-bottom: 1rem;">Review my Experience</h3>
                 <p style="margin-bottom: 2rem;">Interested in a detailed breakdown of my projects and certifications?</p>
@@ -507,10 +519,28 @@
     </footer>
 
     <script>
+        // Initialize ScrollReveal
         const sr = ScrollReveal({ origin: 'bottom', distance: '50px', duration: 1000, delay: 200, reset: true });
         sr.reveal('.hero-reveal', { delay: 300, interval: 200 });
         sr.reveal('.reveal', { interval: 150 });
         sr.reveal('.reveal-card', { interval: 150 });
+
+        // Mobile Menu Toggle
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.nav-menu');
+
+        menu.addEventListener('click', () => {
+            menu.classList.toggle('active');
+            menuLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu on click of a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+                menuLinks.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
